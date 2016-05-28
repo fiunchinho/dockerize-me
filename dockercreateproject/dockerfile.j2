@@ -11,14 +11,14 @@ ARG git_commit="Unknown"
 ARG git_branch="Unknown"
 ARG built_on="Unknown"
 
-CMD {{ command }}
-
 {% if needs_entrypoint %}
 ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 {% else %}
 ENTRYPOINT ["/sbin/tini", "--"]
 {% endif %}
+
+CMD {{ docker_cmd }}
 
 COPY ./Dockerfile /Dockerfile
 

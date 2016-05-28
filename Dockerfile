@@ -7,9 +7,10 @@ ARG git_commit="Unknown"
 ARG git_branch="Unknown"
 ARG built_on="Unknown"
 
-CMD ["python", "/code/dockercreateproject/create.py"]
+ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["python", "/code/dockercreateproject/create.py"]
 
 COPY ./Dockerfile /Dockerfile
 

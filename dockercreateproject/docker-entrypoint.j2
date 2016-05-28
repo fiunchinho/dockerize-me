@@ -11,13 +11,12 @@ fi
 
 # check for the expected command
 if [ "$1" = '{{ cmd[0] }}' ]; then
-    # init stuff....
+    # init stuff...
     # ...
     # ..
     # .
-    # use gosu to drop to a non-root user
-    {{ cmd[0] }} "$@"
+    exec "$@"
 fi
 
-# else default to run whatever the user wanted like "bash"
+# else default to run whatever the user wanted like "sh"
 exec "$@"
