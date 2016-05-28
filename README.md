@@ -1,4 +1,4 @@
-# Docker Create Project
+# Dockerize Me
 Tired of copy/pasting Dockerfiles around? Not sure about best practices for Dockerfiles or Docker entry points?
 This tool lets you Dockerize your applications using [best practices](https://github.com/docker-library/official-images#review-guidelines) to define your Dockerfile and Docker entry point files.
 
@@ -30,7 +30,11 @@ docker build \
     -t your_image .
 ```
 
+This has generated a Dockerfile.
 If you have selected to use a docker entrypoint, a file called `docker-entrypoint.sh` will be generated. Before building your image, give execution permissions to this file.
+
+## Motivation
+This project allow people to easily create nice Dockerfiles to dockerize their applications. Besides, it's a way to document how to craft good Docker images.
 
 ## Images
 This tool uses the following images to keep your Docker images as tiny as possible
@@ -67,4 +71,4 @@ docker build \
 - Use a different command `docker run -it --rm -v $PWD:/code fiunchinho/docker-create-project python --version`
 
 ## Credits
-I learn many of these concepts thanks to [garethr](https://twitter.com/garethr) or [jbaruch](https://twitter.com/jbaruch). You should definitely listen to them.
+I learn many of these concepts thanks to [garethr](https://twitter.com/garethr), [jpetazzo](https://twitter.com/jpetazzo) or [jbaruch](https://twitter.com/jbaruch). You should definitely listen to them.
