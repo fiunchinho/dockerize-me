@@ -14,7 +14,7 @@ def render(name, email, command, needs_java=False, port=False, app_deps="", depe
 
     with open("./Dockerfile", "w") as file_handler:
         file_handler \
-            .write(j2_env.get_template('dockerfile.j2')
+            .write(j2_env.get_template('Dockerfile.j2')
                    .render(name=name,
                            email=email,
                            needs_java=needs_java,
