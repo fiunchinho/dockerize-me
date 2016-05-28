@@ -66,3 +66,6 @@ docker build \
 - Get an shell `docker run -it -v $PWD:/code fiunchinho/docker-create-project sh`
 - Pass flags to the command, useful for help or version `docker run -it -v $PWD:/code fiunchinho/docker-create-project --version`
 - Use a different command `docker run -it -v $PWD:/code fiunchinho/docker-create-project echo hi!`
+
+## Credits
+I learn many of these concepts thanks to [garethr](https://twitter.com/garethr) or [jbaruch](https://twitter.com/jbaruch). You should definitely listen to them.
