@@ -9,7 +9,7 @@ It'll generate a valid `Dockerfile`, and, if needed, a valid `docker-entrypoint.
 You can run this utility with Docker
 
 ```bash
-$ docker run -it -v $PWD:/code fiunchinho/docker-create-project
+$ docker run -it --rm -v $PWD:/code fiunchinho/docker-create-project
 
 Your email: alice@wonderland.com
 Your full name: Alice Wonderland
@@ -62,10 +62,9 @@ docker build \
 
 ## Developer Experience
 [Trying to make life easier for developers](https://github.com/docker-library/official-images#consistency), images that need a docker entry point and images that don't, they both accept commands the same way. Images created with this tool let you
-- Run the default command `docker run -it -v $PWD:/code fiunchinho/docker-create-project`
-- Get an shell `docker run -it -v $PWD:/code fiunchinho/docker-create-project sh`
-- Pass flags to the command, useful for help or version `docker run -it -v $PWD:/code fiunchinho/docker-create-project --version`
-- Use a different command `docker run -it -v $PWD:/code fiunchinho/docker-create-project echo hi!`
+- Run the default command `docker run -it --rm -v $PWD:/code fiunchinho/docker-create-project`
+- Get an shell `docker run -it --rm -v $PWD:/code fiunchinho/docker-create-project sh`
+- Use a different command `docker run -it --rm -v $PWD:/code fiunchinho/docker-create-project python --version`
 
 ## Credits
 I learn many of these concepts thanks to [garethr](https://twitter.com/garethr) or [jbaruch](https://twitter.com/jbaruch). You should definitely listen to them.
