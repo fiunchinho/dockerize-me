@@ -9,7 +9,7 @@ ARG built_on="Unknown"
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD ["python", "/code/dockercreateproject/create.py"]
+CMD ["python", "/code/dockerize-me/dockerize.py"]
 
 COPY ./Dockerfile /Dockerfile
 
