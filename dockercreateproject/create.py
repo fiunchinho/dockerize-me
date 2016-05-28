@@ -4,23 +4,13 @@ import os
 
 def render(name, email, command, needs_java=False, port=False, app_deps="", dependencies=[], needs_entrypoint=False,
            src="."):
-    command = command.split(' ').__str__().replace("'", "\"")
+    docker_cmd = command.split(' ').__str__().replace("'", "\"")
 
     pwd = os.path.dirname(os.path.abspath(__file__))
     j2_env = Environment(loader=FileSystemLoader(pwd), trim_blocks=True, lstrip_blocks=True)
     if needs_entrypoint:
         with open("./docker-entrypoint.sh", "w") as file_handler:
-            file_handler \
-                .write(j2_env.get_template('docker-entrypoint.j2')
-                       .render(name=name,
-                               email=email,
-                               needs_java=needs_java,
-                               needs_entrypoint=needs_entrypoint,
-                               command=command,
-                               src=src,
-                               port=port,
-                               deps=dependencies,
-                               app_deps=app_deps))
+            file_handler.write(j2_env.get_template('docker-entrypoint.j2').render(command=command))
 
     with open("./Dockerfile", "w") as file_handler:
         file_handler \
@@ -29,7 +19,7 @@ def render(name, email, command, needs_java=False, port=False, app_deps="", depe
                            email=email,
                            needs_java=needs_java,
                            needs_entrypoint=needs_entrypoint,
-                           command=command,
+                           docker_cmd=docker_cmd,
                            src=src,
                            port=port,
                            deps=dependencies,
@@ -59,6 +49,7 @@ if __name__ == '__main__':
         app_deps=app_deps
     )
 
+    print("If you have selected to use a docker entrypoint, give execution permissions to the docker-entrypoint.sh file before building your image")
     print("You can build your container running the following command: ")
     print("docker build \ ")
     print("--build-arg git_repository=`git config --get remote.origin.url` \ ")
