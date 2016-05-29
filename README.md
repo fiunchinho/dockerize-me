@@ -1,4 +1,9 @@
 # Dockerize Me
+[![](https://imagelayers.io/badge/fiunchinho/dockerize-me:latest.svg)](https://imagelayers.io/?images=fiunchinho/dockerize-me:latest)
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/fiunchinho/dockerize-me/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/fiunchinho/dockerize-me.svg?maxAge=2592000)]()
+[![Docker Stars](https://img.shields.io/docker/stars/fiunchinho/dockerize-me.svg?maxAge=2592000)]()
+
 Tired of copy/pasting Dockerfiles around? Not sure about best practices for Dockerfiles or Docker entry points?
 This tool lets you Dockerize your applications using [best practices](https://github.com/docker-library/official-images#review-guidelines) to define your Dockerfile and Docker entry point files.
 
