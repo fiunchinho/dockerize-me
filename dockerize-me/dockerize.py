@@ -9,10 +9,10 @@ def render(name, email, command, needs_java=False, port=False, app_deps="", depe
     pwd = os.path.dirname(os.path.abspath(__file__))
     j2_env = Environment(loader=FileSystemLoader(pwd), trim_blocks=True, lstrip_blocks=True)
     if needs_entrypoint:
-        with open("./docker-entrypoint.sh", "w") as file_handler:
+        with open("/code/docker-entrypoint.sh", "w") as file_handler:
             file_handler.write(j2_env.get_template('docker-entrypoint.j2').render(command=command))
 
-    with open("./Dockerfile", "w") as file_handler:
+    with open("/code/Dockerfile", "w") as file_handler:
         file_handler \
             .write(j2_env.get_template('Dockerfile.j2')
                    .render(name=name,

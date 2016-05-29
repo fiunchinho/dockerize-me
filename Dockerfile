@@ -7,9 +7,11 @@ ARG git_commit="Unknown"
 ARG git_branch="Unknown"
 ARG built_on="Unknown"
 
+VOLUME ["/code"]
+
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD ["python", "/code/dockerize-me/dockerize.py"]
+CMD ["python", "/opt/dockerize-me/dockerize.py"]
 
 COPY ./Dockerfile /Dockerfile
 
@@ -22,8 +24,8 @@ LABEL git.branch=$git_branch
 LABEL build.dockerfile=/Dockerfile
 LABEL build.on=$built_on
 
-WORKDIR /code
+WORKDIR /opt
 
-COPY . /code/
+COPY . /opt/
 
 RUN pip install -r requirements.txt
