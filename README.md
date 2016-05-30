@@ -18,7 +18,7 @@ $ docker run -it --rm -v $PWD:/code fiunchinho/dockerize-me
 
 Your email: alice@wonderland.com
 Your full name: Alice Wonderland
-Does the container runs Java? [False] 
+Does the container run Java? [False] 
 Which file/folder needs to be copied to the container? It'll be copied into '/code' [.] 
 Which port do you want to expose? [No ports exposed] 
 Do you need an entrypoint to do stuff before running the app? [False] 
