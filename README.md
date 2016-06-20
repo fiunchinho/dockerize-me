@@ -52,20 +52,21 @@ We use [tini](https://github.com/krallin/tini) as init system, so you don't have
 ## Metadata
 All our images have special labels that help us determine which is inside the image. This tool also copies the Dockerfile used to build the image inside the container.
 The labels added to the images are
-- `git.repository` url of the git repository
-- `git.commit` sha1 hash of the commit when the image was built
-- `git.branch` git branch when the image was built
-- `build.dockerfile` path to the Dockerfile inside the container. Normally `/Dockerfile`
-- `build.on` date and time when the image was built
+- `org.label-schema.vcs-type` type of vcs like Git or Subversion
+- `org.label-schema.vcs-url` url of the git repository
+- `org.label-schema.vcs-ref` sha1 hash of the commit when the image was built
+- `org.label-schema.vcs-branch` git branch when the image was built
+- `org.label-schema.docker.dockerfile` path to the Dockerfile inside the container. Normally `/Dockerfile`
+- `org.label-schema.build-date` date and time when the image was built
 
 Once you've generated the `Dockerfile`, you can build your image with
 
 ```bash
 docker build \ 
-    --build-arg git_repository=`git config --get remote.origin.url` \ 
-    --build-arg git_branch=`git rev-parse --abbrev-ref HEAD` \ 
-    --build-arg git_commit=`git rev-parse HEAD` \ 
-    --build-arg built_on=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \ 
+    --build-arg vcs_url=`git config --get remote.origin.url` \ 
+    --build-arg vcs_branch=`git rev-parse --abbrev-ref HEAD` \ 
+    --build-arg vcs_ref=`git rev-parse HEAD` \ 
+    --build-arg build_date=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \ 
     -t your_image_name .
 ```
 

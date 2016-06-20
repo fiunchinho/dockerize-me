@@ -6,10 +6,11 @@ FROM alpine:3.3
 
 MAINTAINER {{ name }} <{{ email }}>
 
-ARG git_repository="Unknown"
-ARG git_commit="Unknown"
-ARG git_branch="Unknown"
-ARG built_on="Unknown"
+ARG vcs_type="Unknown"
+ARG vcs_url="Unknown"
+ARG vcs_ref="Unknown"
+ARG vcs_branch="Unknown"
+ARG build_date="Unknown"
 
 {% if needs_entrypoint %}
 ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
@@ -28,11 +29,12 @@ EXPOSE {{ port }}
 
 RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 {{ deps }}
 
-LABEL git.repository=$git_repository
-LABEL git.commit=$git_commit
-LABEL git.branch=$git_branch
-LABEL build.dockerfile=/Dockerfile
-LABEL build.on=$built_on
+LABEL org.label-schema.vcs-type=$vcs_type \
+      org.label-schema.vcs-url=$vcs_url \
+      org.label-schema.vcs-ref=$vcs_ref \
+      org.label-schema.vcs-branch=$vcs_branch \
+      org.label-schema.docker.dockerfile=/Dockerfile \
+      org.label-schema.build-date=$build_date
 
 WORKDIR /code
 
