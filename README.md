@@ -28,10 +28,11 @@ App dependencies command (f.e pip install -r requirements.txt): [False] pip inst
 
 You can build your container running the following command: 
 docker build \ 
-    --build-arg git_repository=`git config --get remote.origin.url` \ 
-    --build-arg git_branch=`git rev-parse --abbrev-ref HEAD` \ 
-    --build-arg git_commit=`git rev-parse HEAD` \ 
-    --build-arg built_on=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \ 
+    --build-arg vcs_type=git \ 
+    --build-arg vcs_url=`git config --get remote.origin.url` \ 
+    --build-arg vcs_branch=`git rev-parse --abbrev-ref HEAD` \ 
+    --build-arg vcs_ref=`git rev-parse HEAD` \ 
+    --build-arg build_date=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
     -t your_image .
 ```
 
@@ -63,6 +64,7 @@ Once you've generated the `Dockerfile`, you can build your image with
 
 ```bash
 docker build \ 
+    --build-arg vcs_type=git \ 
     --build-arg vcs_url=`git config --get remote.origin.url` \ 
     --build-arg vcs_branch=`git rev-parse --abbrev-ref HEAD` \ 
     --build-arg vcs_ref=`git rev-parse HEAD` \ 

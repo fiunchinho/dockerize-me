@@ -52,6 +52,7 @@ if __name__ == '__main__':
     print("If you have selected to use a docker entrypoint, give execution permissions to the docker-entrypoint.sh file before building your image")
     print("You can build your container running the following command: ")
     print("docker build \ ")
+    print("--build-arg vcs_type=git \ ")
     print("--build-arg vcs_url=`git config --get remote.origin.url` \ ")
     print("--build-arg vcs_branch=`git rev-parse --abbrev-ref HEAD` \ ")
     print("--build-arg vcs_ref=`git rev-parse HEAD` \ ")
