@@ -1,5 +1,5 @@
 # Dockerize Me
-[![](https://imagelayers.io/badge/fiunchinho/dockerize-me:latest.svg)](https://imagelayers.io/?images=fiunchinho/dockerize-me:latest)
+[![MicroBadger](https://images.microbadger.com/badges/image/fiunchinho/dockerize-me.svg)](https://microbadger.com/images/fiunchinho/dockerize-me "Get your own image badge on microbadger.com")
 [![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/fiunchinho/dockerize-me/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/fiunchinho/dockerize-me.svg?maxAge=2592000)]()
 [![Docker Stars](https://img.shields.io/docker/stars/fiunchinho/dockerize-me.svg?maxAge=2592000)]()
