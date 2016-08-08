@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 
 MAINTAINER Jose Armesto <jose@armesto.net>
 
@@ -17,7 +17,7 @@ CMD ["python", "/opt/dockerize-me/dockerize.py"]
 COPY ./Dockerfile /Dockerfile
 
 
-RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 python=2.7.11-r3 py-pip=7.1.2-r0
+RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 py-pip=8.1.2-r0
 
 LABEL org.label-schema.vcs-type=git \
       org.label-schema.vcs-url=$vcs_url \
