@@ -7,22 +7,22 @@
 Tired of copy/pasting Dockerfiles around? Not sure about best practices for Dockerfiles or Docker entry points?
 This tool lets you Dockerize your applications using [best practices](https://github.com/docker-library/official-images#review-guidelines) to define your Dockerfile and Docker entry point files.
 
-You just need to mount your app into the `/code` folder and follow the instructions.
+You just need to mount your app into the `/app` folder and follow the instructions.
 It'll generate a valid `Dockerfile`, and, if needed, a valid `docker-entrypoint.sh` file to be used as entry point.
 
 ## Example
 You can run this utility with Docker
 
 ```bash
-$ docker run -it --rm -v $PWD:/code fiunchinho/dockerize-me
+$ docker run -it --rm -v $PWD:/app fiunchinho/dockerize-me
 
 Your email: alice@wonderland.com
 Your full name: Alice Wonderland
 Does the container run Java? [False] 
-Which file/folder needs to be copied to the container? It'll be copied into '/code' [.] 
+Which file/folder needs to be copied to the container? It'll be copied into '/app' [.] 
 Which port do you want to expose? [No ports exposed] 
 Do you need an entrypoint to do stuff before running the app? [False] 
-Which command needs to be executed to start your application? Your app lives in '/code' python /code/dockerize-me/dockerize.py
+Which command needs to be executed to start your application? Your app lives in '/app' python /app/dockerize-me/dockerize.py
 System dependencies (f.e python=2.7.11-r3 py-pip=7.1.2-r0): python=2.7.11-r3 py-pip=7.1.2-r0
 App dependencies command (f.e pip install -r requirements.txt): [False] pip install -r requirements.txt
 
@@ -74,9 +74,9 @@ docker build \
 
 ## Developer Experience
 [Trying to make life easier for developers](https://github.com/docker-library/official-images#consistency), images that need a docker entry point and images that don't, they both accept commands the same way. Images created with this tool let you
-- Run the default command `docker run -it --rm -v $PWD:/code fiunchinho/dockerize-me`
-- Get an shell `docker run -it --rm -v $PWD:/code fiunchinho/dockerize-me sh`
-- Use a different command `docker run -it --rm -v $PWD:/code fiunchinho/dockerize-me python --version`
+- Run the default command `docker run -it --rm -v $PWD:/app fiunchinho/dockerize-me`
+- Get an shell `docker run -it --rm -v $PWD:/app fiunchinho/dockerize-me sh`
+- Use a different command `docker run -it --rm -v $PWD:/app fiunchinho/dockerize-me python --version`
 
 ## Credits
 I learn many of these concepts thanks to [garethr](https://twitter.com/garethr), [jpetazzo](https://twitter.com/jpetazzo) or [jbaruch](https://twitter.com/jbaruch). You should definitely listen to them.

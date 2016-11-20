@@ -12,10 +12,6 @@ ARG vcs_ref="Unknown"
 ARG vcs_branch="Unknown"
 ARG build_date="Unknown"
 
-RUN groupadd --gid 10001 app && \
-    useradd --uid 10001 --gid 10001 --home /app --create-home app
-
-USER app
 WORKDIR /app
 
 {% if needs_entrypoint %}
@@ -33,7 +29,8 @@ COPY ./Dockerfile /Dockerfile
 EXPOSE {{ port }}
 {% endif %}
 
-RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 {{ deps }}
+RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 {{ deps }} && \
+    adduser -u 10001 -D -h /app app
 
 LABEL org.label-schema.vcs-type=$vcs_type \
       org.label-schema.vcs-url=$vcs_url \
@@ -47,3 +44,4 @@ COPY {{ src }} /app
 {% if app_deps %}
 RUN {{ app_deps }}
 {% endif %}
+USER app

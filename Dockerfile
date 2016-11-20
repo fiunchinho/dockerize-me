@@ -8,12 +8,6 @@ ARG vcs_ref="Unknown"
 ARG vcs_branch="Unknown"
 ARG build_date="Unknown"
 
-RUN groupadd --gid 10001 app && \
-    useradd --uid 10001 --gid 10001 --home /app --create-home app
-
-USER app
-WORKDIR /app
-
 VOLUME ["/app"]
 
 ENTRYPOINT ["/sbin/tini", "--"]
@@ -22,8 +16,10 @@ CMD ["python", "/app/dockerize-me/dockerize.py"]
 
 COPY ./Dockerfile /Dockerfile
 
+RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 py-pip=8.1.2-r0 && \
+    adduser -u 10001 -D -h /app app
 
-RUN apk add --update --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ tini=0.9.0-r1 py-pip=8.1.2-r0
+WORKDIR /app
 
 LABEL org.label-schema.vcs-type=git \
       org.label-schema.vcs-url=$vcs_url \
@@ -35,3 +31,4 @@ LABEL org.label-schema.vcs-type=git \
 COPY . /app
 
 RUN pip install -r requirements.txt
+USER app
