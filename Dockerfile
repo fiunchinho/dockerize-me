@@ -3,16 +3,22 @@ FROM alpine:3.4
 MAINTAINER Jose Armesto <jose@armesto.net>
 
 ARG vcs_type="git"
-ARG vcs_url="Unknown"
+ARG vcs_url="https://github.com/fiunchinho/dockerize-me"
 ARG vcs_ref="Unknown"
 ARG vcs_branch="Unknown"
 ARG build_date="Unknown"
 
-VOLUME ["/code"]
+RUN groupadd --gid 10001 app && \
+    useradd --uid 10001 --gid 10001 --home /app --create-home app
+
+USER app
+WORKDIR /app
+
+VOLUME ["/app"]
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD ["python", "/opt/dockerize-me/dockerize.py"]
+CMD ["python", "/app/dockerize-me/dockerize.py"]
 
 COPY ./Dockerfile /Dockerfile
 
@@ -26,8 +32,6 @@ LABEL org.label-schema.vcs-type=git \
       org.label-schema.docker.dockerfile=/Dockerfile \
       org.label-schema.build-date=$build_date
 
-WORKDIR /opt
-
-COPY . /opt/
+COPY . /app
 
 RUN pip install -r requirements.txt

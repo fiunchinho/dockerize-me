@@ -1,7 +1,7 @@
 {% if needs_java %}
 FROM anapsix/alpine-java:jre8
 {% else %}
-FROM alpine:3.3
+FROM alpine:3.4
 {% endif %}
 
 MAINTAINER {{ name }} <{{ email }}>
@@ -11,6 +11,12 @@ ARG vcs_url="Unknown"
 ARG vcs_ref="Unknown"
 ARG vcs_branch="Unknown"
 ARG build_date="Unknown"
+
+RUN groupadd --gid 10001 app && \
+    useradd --uid 10001 --gid 10001 --home /app --create-home app
+
+USER app
+WORKDIR /app
 
 {% if needs_entrypoint %}
 ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
@@ -36,9 +42,7 @@ LABEL org.label-schema.vcs-type=$vcs_type \
       org.label-schema.docker.dockerfile=/Dockerfile \
       org.label-schema.build-date=$build_date
 
-WORKDIR /code
-
-COPY {{ src }} /code/
+COPY {{ src }} /app
 
 {% if app_deps %}
 RUN {{ app_deps }}
